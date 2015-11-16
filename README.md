@@ -1,2 +1,2 @@
-# SierraDevAcademy
-Work for Sierra Dev Academy
+# SierraDevSchool
+Work for SierraDevSchool
