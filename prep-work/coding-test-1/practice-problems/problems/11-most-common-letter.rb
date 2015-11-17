@@ -5,29 +5,28 @@
 # Difficulty: medium.
 
 def most_common_letter(string)
-	count = 0
-	i = 0
-	j = 0
-	ltr = '\0'
-	temp = 0
-	string = string.split('')
-	ltr = string[1]
-	while i < string.length
-		while j < string.length
-			if string[i] == string[j]
-				temp+=1
-			end
-			j+=1
-		end
-		if(temp>count)
-			ltr = string[i]
-			count = temp
-		end
-		temp = 0
-		i+=1
-		j=i
-	end
-	return ltr,count
+  count = 0
+  i = 0
+  j = 0
+  temp = 0
+  string = string.split('')
+  ltr = string[1]
+  while i < string.length
+    while j < string.length
+      if string[i] == string[j]
+        temp += 1
+      end
+      j += 1
+    end
+    if(temp>count)
+      ltr = string[i]
+      count = temp
+    end
+    temp = 0
+    i += 1
+    j = i
+  end
+  ltr, count
 end
 
 # These are tests to check that your code is working. After writing

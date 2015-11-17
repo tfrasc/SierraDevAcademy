@@ -6,12 +6,12 @@
 # Difficulty: easy.
 
 def reverse(string)
-	rev = ""
-	string = string.split('')
-	string.each do |c|
-		rev = c + rev
-	end
-	rev.to_s
+  rev = ""
+  string = string.split('')
+  string.each do |char|
+    rev = char + rev
+  end
+  rev.to_s
 end
 
 # These are tests to check that your code is working. After writing

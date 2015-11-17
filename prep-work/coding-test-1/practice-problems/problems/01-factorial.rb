@@ -6,19 +6,19 @@
 # Difficulty: easy.
 
 def factorial(n)
-	i = 0
-	fact = 1
+  i = 0
+  fact = 1
 
-	if n == 0
-		return 1
-	end
+  if n == 0
+    return 1
+  end
 
-	while i < n
-		fact *= (n-i)
-		i += 1
-	end
-	puts fact
-	return fact
+  while i < n
+    fact *= n - i
+    i += 1
+  end
+  puts fact
+  fact
 end
 
 # These are tests to check that your code is working. After writing

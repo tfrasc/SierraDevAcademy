@@ -7,20 +7,41 @@
 #
 # Difficulty: medium.
 
-def dasherize_number(num)
-	str = []
-	while num * 10 > 10
-		str.unshift(num % 10)
-		if (num % 10 % 2) != 0 or (num  % 10 == 0)
-			str.unshift('-')
-		end
-		num /= 10
-		puts str.join
-	end
-	str = str.join('')
-	puts str
+# def dasherize_number(num)
+#   str = []
+#   while num * 10 > 10
+#     str.unshift(num % 10)
+#     if (num % 10 % 2) != 0 or (num  % 10 == 0)
+#       str.unshift('-')
+#     end
+#     num /= 10
+#     puts str.join
+#   end
+#   str = str.join('')
+#   puts str
+#
+#   return str
+# end
 
-	return str
+def dasherize_number(num)
+  nums = num.to_s.split(//)
+  result = ''
+  nums.each do |num|
+    digit = num.to_i
+    if digit.odd?
+      result << '-' << digit.to_s << '-'
+    else
+      result << num.to_s
+    end
+  end
+  if result[0] == '-'
+    result = result[1..-1]
+  end
+  if result[-1] == '-'
+    result = result[0...-1]
+  end
+  result = result.gsub('--', '-')
+  p result
 end
 
 # These are tests to check that your code is working. After writing

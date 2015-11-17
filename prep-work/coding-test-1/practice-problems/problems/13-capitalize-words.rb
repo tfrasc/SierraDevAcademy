@@ -9,14 +9,14 @@
 # Difficulty: medium.
 
 def capitalize_words(string)
-	i =
-	string = string.split(" ")
-	string.map! { |c|
-		c = c.split('')
-		c[0] = c[0].upcase
-		c.join }
-	string = string.join(" ")
-	return string
+  string = string.split(" ")
+  string.map! do |c|
+    c = c.split('')
+    c[0] = c[0].upcase
+    c.join
+  end
+  string = string.join(" ")
+  string
 end
 
 # These are tests to check that your code is working. After writing

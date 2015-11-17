@@ -7,14 +7,14 @@
 # Difficulty: easy.
 
 def longest_word(sentence)
-	sentence = sentence.split(" ")
-	longest = sentence[0]
-	sentence.each do |s|
-		if s.length > longest.length
-			longest = s
-		end
-	end
-	longest.to_s
+  sentence = sentence.split(" ")
+  longest = sentence[0]
+  sentence.each do |s|
+    if s.length > longest.length
+      longest = s
+    end
+  end
+  longest.to_s
 end
 
 # These are tests to check that your code is working. After writing

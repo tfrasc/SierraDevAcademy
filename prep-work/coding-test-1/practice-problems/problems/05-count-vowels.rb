@@ -3,20 +3,30 @@
 # You can treat "y" as a consonant.
 #
 # Difficulty: easy.
-
+#
+# def count_vowels(string)
+#   i = 0
+#   string = string.split('')
+#   string.each do |v|
+#     case v
+#      when 'a', 'e', 'i', 'o','u'
+#       i += 1
+#     end
+#   end
+#   i
+# end
+#
 def count_vowels(string)
-	i = 0
-	cnt = 0
-	string = string.split('')
-	string.each do |v|
-		case v
-		 when 'a', 'e', 'i', 'o','u'
-			i += 1
-		end
-	end
-	return i
+  i = 0
+  string = string.split('')
+  vowels = 'a', 'e', 'i', 'o','u'
+  string.each do |v|
+    if vowels.include?(v)
+      i += 1
+    end
+  end
+  i
 end
-
 # These are tests to check that your code is working. After writing
 # your solution, they should all print true.
 
