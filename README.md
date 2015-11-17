@@ -1,2 +1,0 @@
-# SierraDevSchool
-Work for SierraDevSchool
