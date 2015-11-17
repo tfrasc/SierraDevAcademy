@@ -6,15 +6,15 @@
 # Difficulty: easy.
 
 def palindrome?(string)
-	i = 1
-	string = string.split('')
-	string.each do |c|
-		if string[string.length - i] != c
-			return false
-		end
-		i+=1
-	end
-	return true
+  i = 1
+  string = string.split('')
+  string.each do |c|
+    if string[string.length - i] != c
+      return false
+    end
+    i+=1
+  end
+  true
 end
 
 # These are tests to check that your code is working. After writing

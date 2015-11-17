@@ -5,17 +5,16 @@
 # Difficulty: medium.
 
 def scramble_string(string, positions)
-	scramble = string
-	scramble = scramble.split
-	i = 0
-	string = string.split('')
-	while i < string.length
-		scramble[positions[i]] = string[i]
-		i += 1
-	end
-	scramble = scramble.join
-	puts scramble
-	return scramble
+  scramble = string
+  scramble = scramble.split
+  i = 0
+  string = string.split('')
+  while i < string.length
+    scramble[positions[i]] = string[i]
+    i += 1
+  end
+  scramble = scramble.join
+  p scramble
 end
 
 # These are tests to check that your code is working. After writing

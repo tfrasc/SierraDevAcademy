@@ -5,18 +5,18 @@
 # Difficulty: medium.
 
 def nearby_az(string)
-	i = 0
-	string = string.split('')
-	while i < string.length
-		if string[i] == 'a'
-			case 'z'
-				when string[i+1], string[i+2], string[i+3]
-					return true
-			end
-		end
-		i+=1
-	end
-	return false
+  i = 0
+  string = string.split('')
+  while i < string.length
+    if string[i] == 'a'
+      case 'z'
+        when string[i+1], string[i+2], string[i+3]
+          return true
+      end
+    end
+    i += 1
+  end
+  false
 end
 
 # These are tests to check that your code is working. After writing

@@ -5,22 +5,22 @@
 # Difficulty: medium.
 
 def third_greatest(nums)
-	first = 0
-	second = 0
-	third = 0
-	nums.each do |x|
-		if x > first
-			third = second
-			second = first
-			first = x
-		elsif x > second
-			third = second
-			second = x
-		elsif x > third
-			third = x
-		end
-	end
-	return third
+  first = 0
+  second = 0
+  third = 0
+  nums.each do |x|
+    if x > first
+      third = second
+      second = first
+      first = x
+    elsif x > second
+      third = second
+      second = x
+    elsif x > third
+      third = x
+    end
+  end
+  third
 end
 
 # These are tests to check that your code is working. After writing
