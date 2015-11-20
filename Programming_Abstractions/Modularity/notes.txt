@@ -1,0 +1,22 @@
+Towers of Hanoi
+---------------
+1. Variable number of Rings?
+2. How much restriction?
+
+
+
+
+
+
+GHOST
+-----
+
+
+
+
+
+
+
+
+Tic-Tac-Toe
+-----------
