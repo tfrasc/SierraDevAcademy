@@ -28,21 +28,40 @@ class Game
     word = ""
     continue = true
     while continue
-     @players.each do |p|
+      @players.each do |p|
         if p.class == HumanPlayer
           puts "#{p.name} please choose a letter"
-         letter = gets.chomp.upcase
-       else
-         letter = [*('A'..'Z')].sample(1).join
-         puts "#{p.name} chooses #{letter}"
+          letter = gets.chomp.upcase
+          while ![*('A'..'Z')].include?(letter)
+            puts "#INVALID: #{p.name} please choose a letter between 'A' and 'Z'"
+            letter = gets.chomp.upcase
+          end
+          word += letter
+        else
+          letter = [*('A'..'Z')].sample(1).join
+          puts "#{p.name} chooses #{letter}"
+          word += letter
         end
-        checkForWord(p)
+        checkForWord(p,word)
       end
+      display
     end
   end
 
-  def checkForWord(word)
-    
+  def checkForWord(player, word)
+
+  end
+
+  def display
+    i = 0
+    ghost = "GHOST"
+    @players.each do |p|
+      print "\n#{p.name}: "
+      while i <= p.ghost and p.ghost > -1
+        print ghost[i]
+      end
+      puts "\n"
+    end
   end
 end
 
