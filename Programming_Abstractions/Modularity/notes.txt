@@ -6,17 +6,16 @@ Towers of Hanoi
 
 
 
-
-
 GHOST
 -----
-
-
-
-
+1. How does computer play? random?
+2. Other restrictions? Minimum number of players?
+3. Raise exception or use flags?
 
 
 
 
 Tic-Tac-Toe
 -----------
+
+
