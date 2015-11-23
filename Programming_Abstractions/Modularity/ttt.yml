@@ -1,0 +1,19 @@
+---
+board: !ruby/object:Board
+  squares:
+  - - X
+    - O
+    - ! ' '
+  - - X
+    - X
+    - ! ' '
+  - - O
+    - ! ' '
+    - O
+  cats: false
+currentPlayer: !ruby/object:Player
+  symbol: X
+  number: 1
+waitingPlayer: !ruby/object:Player
+  symbol: O
+  number: 2
