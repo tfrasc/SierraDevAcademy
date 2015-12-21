@@ -1,8 +1,9 @@
 class Board
+  attr_accessor :grid
+
   def initialize
-    @base_grid = []
-    set_base_grid 
-    @grid = @base_grid
+    @base_grid, @grid = [], []
+    set_base_grid
     set_grid
   end
 
@@ -11,8 +12,10 @@ class Board
     current_char = BLACK_SQUARE
     next_char = WHITE_SQUARE
     while i < 8
+      @grid.push([])
       @base_grid.push([])
       while j < 8
+        @grid[i].push(Piece.new(current_char, "Empty", i, j))
         @base_grid[i].push(Piece.new(current_char, "Empty", i, j))
         j += 1
         current_char, next_char = next_char, current_char
@@ -53,8 +56,21 @@ class Board
     end
   end
 
-  def deep_dup
+  def [](row, col)
+    @grid[row][col]
+  end
 
+  def []=(row, col, piece)
+    @grid[row][col] = piece
+    @grid[row][col].row = row 
+    @grid[row][col].col = col
+  end
+  
+  def clear_space(row, col)
+    @grid[row][col] = @base_grid[row][col]
+  end
+
+  def deep_dup
   end
 
   def display

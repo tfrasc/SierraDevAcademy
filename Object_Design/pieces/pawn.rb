@@ -7,7 +7,17 @@ class Pawn < Piece
   end
 
   def possible_moves
-    @diffs = [[row - 1, col], [row - 2, col], [row - 1, col + 1], [row - 1, row - 1]]
-          +  [[row + 1, col], [row + 2, col], [row + 1, col + 1], [row + 1, row - 1]]
+    if @color == "BLACK"
+      @diffs = [[row + 1, col], [row + 1, col + 1], [row + 1, col - 1]]
+      if @first
+        @diffs += [row + 2, col]
+      end
+    else
+      @diffs = [[row - 1, col], [row - 1, col + 1], [row - 1, col - 1]]
+      if @first
+        @diffs += [row - 2, col]
+      end
+    end
+    @diffs
   end
 end
