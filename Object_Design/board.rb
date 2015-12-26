@@ -9,18 +9,14 @@ class Board
 
   def set_base_grid
     i, j = 0, 0
-    current_char = BLACK_SQUARE
-    next_char = WHITE_SQUARE
     while i < 8
       @grid.push([])
       @base_grid.push([])
       while j < 8
-        @grid[i].push(Piece.new(current_char, "Empty", i, j))
-        @base_grid[i].push(Piece.new(current_char, "Empty", i, j))
+        @grid[i].push(Piece.new(:empty, [i, j]))
+        @base_grid[i].push(Piece.new(:empty, [i, j]))
         j += 1
-        current_char, next_char = next_char, current_char
       end
-    current_char, next_char = next_char, current_char
     j = 0
     i += 1
     end
@@ -28,46 +24,48 @@ class Board
 
   def set_grid
     i = 0
-    @grid[0][0] = Rook.new(BLACK_ROOK, "Black", 0, 0)
-    @grid[0][1] = Knight.new(BLACK_KNIGHT, "Black", 0, 1)
-    @grid[0][2] = Bishop.new(BLACK_BISHOP, "Black", 0, 2)
-    @grid[0][3] = Queen.new(BLACK_QUEEN, "Black", 0, 3)
-    @grid[0][4] = King.new(BLACK_KING, "Black", 0, 4)
-    @grid[0][5] = Bishop.new(BLACK_BISHOP, "Black", 0, 5)
-    @grid[0][6] = Knight.new(BLACK_KNIGHT, "Black", 0, 6)
-    @grid[0][7] = Rook.new(BLACK_ROOK, "Black", 0, 7)
-    @grid[7][0] = Rook.new(WHITE_ROOK, "White", 7, 0)
-    @grid[7][1] = Knight.new(WHITE_KNIGHT, "White", 7, 1)
-    @grid[7][2] = Bishop.new(WHITE_BISHOP, "White", 7, 2)
-    @grid[7][3] = Queen.new(WHITE_QUEEN, "White", 7, 3)
-    @grid[7][4] = King.new(WHITE_KING, "White", 7, 4)
-    @grid[7][5] = Bishop.new(WHITE_BISHOP, "White", 7, 5)
-    @grid[7][6] = Knight.new(WHITE_KNIGHT, "White", 7, 6)
-    @grid[7][7] = Rook.new(WHITE_ROOK, "White", 7, 7)
+    @grid[0][0] = Rook.new(:black, [0, 0])
+    @grid[0][1] = Knight.new(:black, [0, 1])
+    @grid[0][2] = Bishop.new(:black, [0, 2])
+    @grid[0][3] = Queen.new(:black, [0, 3])
+    @grid[0][4] = King.new(:black, [0, 4])
+    @grid[0][5] = Bishop.new(:black, [0, 5])
+    @grid[0][6] = Knight.new(:black, [0, 6])
+    @grid[0][7] = Rook.new(:black, [0, 7])
+    @grid[7][0] = Rook.new(:white, [7, 0])
+    @grid[7][1] = Knight.new(:white, [7, 1])
+    @grid[7][2] = Bishop.new(:white, [7, 2])
+    @grid[7][3] = Queen.new(:white, [7, 3])
+    @grid[7][4] = King.new(:white, [7, 4])
+    @grid[7][5] = Bishop.new(:white, [7, 5])
+    @grid[7][6] = Knight.new(:white, [7, 6])
+    @grid[7][7] = Rook.new(:white, [7, 7])
 
     while i < 8
-      @grid[1][i] = Pawn.new(BLACK_PAWN, "Black", 1, i)
+      @grid[1][i] = Pawn.new(:black, [1, i])
       i += 1
     end
     i = 0
     while i < 8
-      @grid[6][i] = Pawn.new(WHITE_PAWN, "White", 6, i)
+      @grid[6][i] = Pawn.new(:white, [6, i])
       i += 1
     end
   end
 
-  def [](row, col)
-    @grid[row][col]
+  def [](pos)
+    row, col = pos
+    @grid[row - 1][col - 1]
   end
 
-  def []=(row, col, piece)
-    @grid[row][col] = piece
-    @grid[row][col].row = row 
-    @grid[row][col].col = col
+  def []=(pos, piece)
+    row, col = pos
+    @grid[row - 1][col - 1] = piece
+    @grid[row - 1][col - 1].pos = [row - 1, col - 1]
   end
   
-  def clear_space(row, col)
-    @grid[row][col] = @base_grid[row][col]
+  def clear_space(pos)
+    row, col = pos
+    @grid[row - 1][col - 1] = @base_grid[row - 1][col - 1]
   end
 
   def deep_dup
@@ -78,8 +76,8 @@ class Board
     puts "\n  1 2 3 4 5 6 7 8"
     @grid.each do |row|
       print i + 1
-      row.each do |col|
-        print " #{col.symbol}"
+      row.each do |piece|
+        print " #{piece.symbol}"
         j += 1
       end
       puts
@@ -89,11 +87,30 @@ class Board
     puts "\n"
   end
 
-  def check?
-    #here or on piece moves?
+  def check?(current_color)
+    king_pos = []
+    @grid.each do |row|
+      row.each do |piece|
+        if(piece.color == current_color && piece.class == King)
+          king_pos = piece.pos
+          break
+        end
+      end
+    end
+    @grid.each do |row|
+      row.each do |piece|
+        if(piece.color != :empty && piece.color != current_color && piece.possible_moves.include?(king_pos))
+          puts "{current_color} is in check!"
+          return true
+        end
+      end
+    end
+    false
   end
 
-  def checkmate?
-    #here or on piece moves?
+  def checkmate?(current_color)
+    if check?(current_color)
+    
+    end
   end
 end
