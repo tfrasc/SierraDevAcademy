@@ -14,12 +14,27 @@ class Bishop < Piece
     end
   end
   
-  def possible_moves
+  def possible_moves(board)
     i = 1
     row, col = @pos
     @diffs = []
-    while i < 8
-      @diffs.push([row + i, col + i], [row + i, col - i], [row - i, col + i], [row - i, col - i])
+    while i < 8 && board[[row + i, col + i]] != nil && board[[row + i, col + i]].color == :empty
+      @diffs.push([row + i, col + i])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row + i, col - i]] != nil && board[[row + i, col - i]].color == :empty
+      @diffs.push([row + i, col - i])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row - i, col + i]] != nil && board[[row - i, col + i]].color == :empty
+      @diffs.push([row - i, col + i])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row - i, col - i]] != nil && board[[row - i, col - i]].color == :empty
+      @diffs.push([row - i, col - i])
       i += 1
     end
     @diffs

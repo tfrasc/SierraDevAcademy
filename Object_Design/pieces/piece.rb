@@ -13,6 +13,7 @@ class Piece
     else
       @symbol = WHITE_SQUARE
     end
+    @color = :empty
   end
 
   def moves

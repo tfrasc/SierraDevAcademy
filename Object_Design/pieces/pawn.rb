@@ -14,24 +14,31 @@ class Pawn < Piece
     end
   end
 
-  def promote
-    #make piece a Queen
+  def promote(board)
+    row, col = @pos
+    if (@color == :black && row == 0) || (@color == :white && row == 7)
+      board[@pos] = Queen.new(@color, @pos)
+    end    
   end
 
-  def possible_moves
+  def possible_moves(board)
     row, col = @pos
     if @color == :black
       @diffs = [[row + 1, col], [row + 1, col + 1], [row + 1, col - 1]]
-      if @first
+      if @first && board[[row + 1, col]].color != @color
         @diffs += [row + 2, col]
       end
     else
       @diffs = [[row - 1, col], [row - 1, col + 1], [row - 1, col - 1]]
-      if @first
+      if @first && board[[row - 1, col]].color != @color
         @diffs += [row - 2, col]
       end
     end
-    moves
+    @diffs.each do |space|
+      if board[space].color == @color
+  #      @diffs.delete(space)
+      end
+    end
     @diffs
   end
 end

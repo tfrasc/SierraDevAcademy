@@ -13,7 +13,7 @@ class Queen < Piece
     end
   end
   
-  def possible_moves
+  def possible_moves(board)
     i = 1
     row, col = @pos
     @diffs = []

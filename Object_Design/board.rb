@@ -9,14 +9,18 @@ class Board
 
   def set_base_grid
     i, j = 0, 0
+    current_color = :white
+    next_color = :black
     while i < 8
       @grid.push([])
       @base_grid.push([])
       while j < 8
-        @grid[i].push(Piece.new(:empty, [i, j]))
-        @base_grid[i].push(Piece.new(:empty, [i, j]))
+        @grid[i].push(Piece.new(current_color, [i, j]))
+        @base_grid[i].push(Piece.new(current_color, [i, j]))
         j += 1
+        current_color, next_color = next_color, current_color
       end
+      current_color, next_color = next_color, current_color
     j = 0
     i += 1
     end
@@ -43,10 +47,6 @@ class Board
 
     while i < 8
       @grid[1][i] = Pawn.new(:black, [1, i])
-      i += 1
-    end
-    i = 0
-    while i < 8
       @grid[6][i] = Pawn.new(:white, [6, i])
       i += 1
     end
@@ -99,7 +99,7 @@ class Board
     end
     @grid.each do |row|
       row.each do |piece|
-        if(piece.color != :empty && piece.color != current_color && piece.possible_moves.include?(king_pos))
+        if(piece.color != :empty && piece.color != current_color && piece.possible_moves(self).include?(king_pos))
           puts "{current_color} is in check!"
           return true
         end

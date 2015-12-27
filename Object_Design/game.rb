@@ -36,7 +36,7 @@ class Game
   def valid_to?(from, to)
     row, col = to
     piece = @board[from]
-    if piece.possible_moves.include?([row - 1, col - 1])
+    if piece.possible_moves(@board).include?([row - 1, col - 1])
       return true
     else
       puts "INVALID: move not possible."
@@ -55,7 +55,7 @@ class Game
       while !valid_to?(from, to)
         pos = @current_player.get_to
       end
-      @board[from] = @board[to]
+      @board[to] = @board[from]
       @board.clear_space(from)
     end
   end

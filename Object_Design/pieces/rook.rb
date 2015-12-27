@@ -12,12 +12,27 @@ class Rook < Piece
     end
   end
   
-  def possible_moves
+  def possible_moves(board)
     i = 1
     row, col = @pos
     @diffs = []
-    while i < 8
-      @diffs.push([row + i, col], [row - i, col], [row, col + i], [row, col - i])
+    while i < 8 && board[[row + i, col ]].color == :empty
+      @diffs.push([row + i, col])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row - i, col]].color == :empty
+      @diffs.push([row - i, col])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row, col + i]].color == :empty
+      @diffs.push([row, col + i])
+      i += 1
+    end
+    i = 1
+    while i < 8 && board[[row, col - i]].color == :empty
+      @diffs.push([row, col - i])
       i += 1
     end
     @diffs

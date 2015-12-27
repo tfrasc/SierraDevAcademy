@@ -13,9 +13,15 @@ class King < Piece
     end
   end
   
-  def possible_moves
+  def possible_moves(board)
     row, col = @pos
     @diffs = [[row - 1, col], [row - 1, col + 1], [row - 1, col - 1], [row, col - 1],
               [row + 1, col], [row + 1, col + 1], [row + 1, col - 1], [row, col + 1]]
+    @diffs.each do |space|
+      if board[space].color == @color
+        @diffs.delete(space)
+      end
+    end
+    @diffs
   end
 end
